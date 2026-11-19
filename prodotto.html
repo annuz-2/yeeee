@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sguardi – Gli occhiali</title>
+  <meta name="description" content="Sguardi: gli occhiali in acetato, in 3D. Guardali smontarsi, scegli il colore e provali con la fotocamera.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/prodotto.css">
+  <!-- Three.js: l'import map dice al browser dove trovare "three" e i suoi addons -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ===== la barra in alto: resta attaccata mentre scorri ===== -->
+  <nav class="barra">
+    <div class="barra-dentro">
+      <a class="barra-nome" href="#panoramica">Sguardi</a>
+      <div class="barra-link">
+        <a href="#panoramica">Panoramica</a>
+        <a href="#esploso" data-vai="0.52">Esploso</a>
+        <a href="#colori">Colori</a>
+        <a href="#prova">Prova</a>
+        <a href="#misure">Misure</a>
+        <a href="index.html">La mostra</a>
+      </div>
+      <button class="pillola" data-apri-prova>Provali</button>
+    </div>
+  </nav>
+
+
+  <!-- ===== il palco: gli occhiali in 3D restano fermi al centro mentre scorri
+       e intanto girano, si smontano, chiudono le aste e cambiano colore (js/prodotto.js) ===== -->
+  <section class="palco" id="panoramica">
+    <span id="esploso" class="ancora-esploso"></span>
+    <div class="palco-fisso">
+      <canvas class="palco-tela" aria-label="Gli occhiali Sguardi in 3D"></canvas>
+      <div class="palco-etichette" aria-hidden="true"></div>
+      <p class="palco-attesa">Carico gli occhiali…</p>
+
+      <div class="palco-testo pos-eroe" data-da="0" data-a="0.11">
+        <p class="occhiello">Nuovi</p>
+        <h1 class="titolo-eroe">Sguardi</h1>
+        <p class="sottotitolo">Leggeri. Luminosi. Tuoi.</p>
+        <p class="scorri">Scorri per scoprirli</p>
+      </div>
+      <div class="palco-testo pos-sinistra" data-da="0.16" data-a="0.33">
+        <h2 class="titolo-grande">Avvolgenti.<br>Leggerissimi.</h2>
+        <p class="testo">Il frontale segue la curva del viso, le aste sottili lo accompagnano fino alle orecchie. Li metti e ti dimentichi di averli.</p>
+      </div>
+      <div class="palco-testo pos-alto" data-da="0.41" data-a="0.62">
+        <h2 class="titolo-grande">L’esploso.</h2>
+        <p class="testo">Sei parti, un solo sguardo. Ognuna ha un compito preciso: guardale una per una.</p>
+      </div>
+      <div class="palco-testo pos-sinistra" data-da="0.66" data-a="0.80">
+        <h2 class="titolo-grande">Cerniere<br>in metallo.</h2>
+        <p class="testo">Piccole, ma decisive: è qui che gli occhiali si aprono e si chiudono, migliaia di volte, senza allentarsi.</p>
+      </div>
+      <div class="palco-testo pos-basso" data-da="0.85" data-a="1.01">
+        <h2 class="titolo-grande">Sette colori.<br>Uno è il tuo.</h2>
+        <p class="palco-colore"><span class="palco-colore-pallino"></span><span class="palco-colore-nome"></span></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== i numeri (la larghezza la calcola js/prodotto.js dal modello 3D) ===== -->
+  <section class="numeri sezione-chiara">
+    <div class="contenuto griglia-numeri">
+      <div class="numero"><span class="numero-valore" data-misura="larghezza">—</span><span class="numero-unita">mm</span><p>di larghezza, misurati sul modello 3D</p></div>
+      <div class="numero"><span class="numero-valore">6</span><p>parti che lavorano insieme, dal frontale ai terminali</p></div>
+      <div class="numero"><span class="numero-valore">7</span><p>colori, dal cristallo al tramonto</p></div>
+    </div>
+  </section>
+
+
+  <!-- ===== i colori: render fotografici generati dal modello 3D ===== -->
+  <section class="colori sezione-chiara" id="colori">
+    <div class="contenuto">
+      <p class="occhiello scuro">Colori</p>
+      <h2 class="titolo-sezione">Scegli il tuo colore.</h2>
+      <div class="vetrina">
+        <img class="vetrina-foto" alt="">
+        <p class="vetrina-attesa">Sto preparando il render…</p>
+      </div>
+      <div class="vetrina-angoli" role="group" aria-label="Punto di vista">
+        <button data-angolo="treQuarti" class="selected">Tre quarti</button>
+        <button data-angolo="fronte">Fronte</button>
+        <button data-angolo="lato">Lato</button>
+        <button data-angolo="alto">Dall’alto</button>
+      </div>
+      <div class="vetrina-pallini" role="group" aria-label="Colore"></div>
+      <h3 class="vetrina-nome"></h3>
+      <p class="vetrina-testo"></p>
+      <div class="vetrina-azioni">
+        <button class="pillola grande" data-apri-prova>Provali in questo colore</button>
+        <a class="link-freccia vetrina-scarica" download>Scarica il render</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== la gamma: tutti i colori uno accanto all'altro ===== -->
+  <section class="gamma">
+    <div class="contenuto">
+      <h2 class="titolo-sezione">Tutta la gamma.</h2>
+      <div class="gamma-griglia"></div>
+    </div>
+  </section>
+
+
+  <!-- ===== la prova: presenta l'app con la fotocamera (js/prodotto-prova.js) ===== -->
+  <section class="prova sezione-scura" id="prova">
+    <div class="contenuto prova-griglia">
+      <div class="prova-testi">
+        <p class="occhiello">Prova virtuale</p>
+        <h2 class="titolo-sezione">Provali.<br>Prima di tutti.</h2>
+        <p class="testo">Apri la fotocamera: gli occhiali si appoggiano sul tuo viso e ti seguono quando giri la testa. Cambia colore con un tocco, scatta una foto e mandala ai tuoi amici per chiedere come ti stanno.</p>
+        <ol class="passi">
+          <li><span>1</span>Guarda la fotocamera</li>
+          <li><span>2</span>Scegli il colore</li>
+          <li><span>3</span>Scatta e invia</li>
+        </ol>
+        <button class="pillola grande" data-apri-prova>Apri la prova virtuale</button>
+        <p class="nota">Il video resta sul tuo dispositivo: non viene registrato né inviato da nessuna parte. Sei tu a decidere se mandare la foto.</p>
+      </div>
+      <div class="telefono" aria-hidden="true">
+        <div class="telefono-schermo">
+          <span class="telefono-isola"></span>
+          <span class="telefono-nome">Ciliegia</span>
+          <span class="telefono-viso"></span>
+          <img class="telefono-foto" alt="">
+          <div class="telefono-ui">
+            <div class="telefono-pallini"></div>
+            <span class="telefono-scatto"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== le misure ===== -->
+  <section class="misure sezione-chiara" id="misure">
+    <div class="contenuto">
+      <h2 class="titolo-sezione">Le misure.</h2>
+      <dl class="scheda">
+        <div><dt>Larghezza totale</dt><dd><span data-misura="larghezza">—</span> mm</dd></div>
+        <div><dt>Altezza del frontale</dt><dd><span data-misura="altezza">—</span> mm</dd></div>
+        <div><dt>Lunghezza delle aste</dt><dd><span data-misura="aste">—</span> mm</dd></div>
+        <div><dt>Lente</dt><dd><span data-misura="lenteLarga">—</span> × <span data-misura="lenteAlta">—</span> mm</dd></div>
+        <div><dt>Montatura</dt><dd>Acetato lucido, colorato in tutto lo spessore</dd></div>
+        <div><dt>Cerniere</dt><dd>Metallo, finitura oro o argento</dd></div>
+        <div><dt>Naselli e terminali</dt><dd>Gomma morbida in tinta</dd></div>
+        <div><dt>Colori</dt><dd>Ciliegia, Mezzanotte, Cristallo, Blu oceano, Salvia, Sabbia, Tramonto</dd></div>
+      </dl>
+      <p class="nota scura">Le misure sono calcolate dal modello 3D degli occhiali (file occhialis.glb).</p>
+    </div>
+  </section>
+
+  <footer class="piede">
+    <div class="contenuto">
+      <p>Sguardi · un progetto per la mostra alla Triennale Milano. <a href="index.html">Torna alla mostra</a></p>
+    </div>
+  </footer>
+
+
+  <!-- ===== l'app della prova virtuale: si apre a tutto schermo ===== -->
+  <dialog class="app" aria-label="Prova virtuale degli occhiali">
+    <div class="app-schermo">
+      <!-- lo specchio: video e occhiali 3D girati come in uno specchio -->
+      <div class="app-specchio">
+        <video class="app-video" playsinline muted></video>
+      </div>
+      <div class="app-flash"></div>
+      <p class="app-stato">Accendo la fotocamera…</p>
+
+      <header class="app-testa">
+        <button class="app-tondo app-chiudi" aria-label="Chiudi">✕</button>
+        <div class="app-titolo"><strong>Sguardi</strong><span class="app-colore-nome"></span></div>
+        <span class="app-tondo app-vuoto"></span>
+      </header>
+
+      <div class="app-fondo">
+        <div class="app-pallini" role="group" aria-label="Colore"></div>
+        <div class="app-riga">
+          <button class="app-ultima" aria-label="Guarda l’ultima foto" disabled></button>
+          <button class="app-scatta" aria-label="Scatta una foto" disabled><span></span></button>
+          <label class="app-misura" title="Misura degli occhiali">
+            <span>Misura</span>
+            <input type="range" min="0.85" max="1.2" step="0.01" value="1" aria-label="Misura degli occhiali">
+          </label>
+        </div>
+      </div>
+
+      <!-- la foto appena scattata, con i bottoni per mandarla -->
+      <div class="app-anteprima" hidden>
+        <img class="app-anteprima-foto" alt="La tua foto con gli occhiali">
+        <div class="app-anteprima-fondo">
+          <button class="pillola grande app-invia">Invia agli amici</button>
+          <div class="app-anteprima-riga">
+            <button class="app-bottone app-salva">Salva</button>
+            <button class="app-bottone app-copia">Copia</button>
+            <button class="app-bottone app-riprova">Riprova</button>
+          </div>
+          <div class="app-altri" hidden>
+            <p>Dal browser non posso aprire direttamente le app: ho salvato la foto, allegala nel messaggio.</p>
+            <div class="app-anteprima-riga">
+              <a class="app-bottone app-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="app-bottone app-telegram" target="_blank" rel="noopener">Telegram</a>
+              <a class="app-bottone app-email">Email</a>
+            </div>
+          </div>
+          <p class="app-avviso" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/prodotto.js"></script>
+  <script type="module" src="js/prodotto-prova.js"></script>
+</body>
+</html>
